@@ -28,6 +28,7 @@ public class LinkedList {
         if (isEmpty()){
             _head = list2.gethead();
             _tail = list2._tail;
+            _size = list2.size();
             list2.clear();
             return;
         }
@@ -229,6 +230,7 @@ public class LinkedList {
             Node stored = gethead();
             _head = list2.gethead();
             _head.setNext(stored);
+            _size += 1;
             list2.clear();
             return;
         }
