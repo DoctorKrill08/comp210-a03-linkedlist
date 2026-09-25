@@ -62,12 +62,12 @@ public class LinkedList {
         int index = 0;
         Node current = _head;
         Node previous = _head;
-        while (index < i){
+        while (index <= i){
             current = current.getNext();
             index++;
             if (index == i){
                 //edge case! If the removed element is the tail, set the tail to the previous element!
-                if (i == size() - 1){
+                if (i == size()){
                     _tail = previous;
                 }
                 break;
@@ -221,15 +221,24 @@ public class LinkedList {
         if (isEmpty()){
             _head = list2.gethead();
             _tail = list2._tail;
+            list2.clear();
+            return;
+        }
+
+        if (list2.size() == 1){
+            Node stored = gethead();
+            _head = list2.gethead();
+            _head.setNext(stored);
+            list2.clear();
             return;
         }
 
 
         Node newTail = _tail;
         Node newHead = list2.gethead();
-        //when this list is less than or the same size as the compared list
-        //The tail is garunteed to be the list2 tail
-        if (size() <= list2.size()){
+        //when this list size is less than the size of the compared list
+        //The tail is guaranteed to be the list2 tail
+        if (size() < list2.size()){
             newTail = list2._tail;
         }
 

@@ -36,8 +36,8 @@ public class Main {
         System.out.println("Task 1: list after simpleMerge with list1 = " + list.toString());
 
         // Test task 2
-        list.removeAtIndex(1);
-        System.out.println("Task 2: list after removing element at index 1 = " + list.toString());
+        list.removeAtIndex(4);
+        System.out.println("Task 2: list after removing element at index 4 = " + list.toString());
 
 
         // Test task 3
