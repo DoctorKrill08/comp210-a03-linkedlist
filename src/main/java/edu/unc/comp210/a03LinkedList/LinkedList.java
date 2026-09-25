@@ -25,6 +25,12 @@ public class LinkedList {
         if (list2.isEmpty()){
             return;
         }
+        if (isEmpty()){
+            _head = list2.gethead();
+            _tail = list2._tail;
+            list2.clear();
+            return;
+        }
         _size += list2.size();
         list2._tail.setNext(gethead());
         _head = list2.gethead();
@@ -48,6 +54,7 @@ public class LinkedList {
         if (i < 0 || i >= size()){
             throw new IndexOutOfBoundsException("Invalid index: " + i);
         }
+        _size--;
         if (i == 0){
             _head = _head.getNext();
             return;
@@ -70,7 +77,6 @@ public class LinkedList {
 
         previous.setNext(current.getNext());
         current = null;
-        _size--;
     }
 
     /**
@@ -218,9 +224,18 @@ public class LinkedList {
             return;
         }
 
-        Node current = gethead();
-        Node stored = gethead().getNext();
-        Node inserted = list2.gethead();
+
+        Node newTail = _tail;
+        Node newHead = list2.gethead();
+        //when this list is less than or the same size as the compared list
+        //The tail is garunteed to be the list2 tail
+        if (size() <= list2.size()){
+            newTail = list2._tail;
+        }
+
+        Node current = list2.gethead();
+        Node stored = current.getNext();
+        Node inserted = gethead();
 
         while (current.hasNext()){
             //Split the current node and store its next node
@@ -242,6 +257,8 @@ public class LinkedList {
         _size += list2.size();
 
         list2.clear();
+        _head = newHead;
+        _tail = newTail;
     }
 
 
